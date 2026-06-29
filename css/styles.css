@@ -290,7 +290,10 @@ em { font-style: italic; }
 .testi-meta { text-align: left; }
 .testi-name { font-size: 14px; font-weight: 500; }
 .testi-role { font-size: 11px; color: #9a9088; letter-spacing: 1px; }
-.testi-dots { display: flex; gap: 10px; justify-content: center; margin-top: 30px; }
+.testi-rating { color: var(--gold-light); font-size: 13px; letter-spacing: 2px; margin: -22px 0 30px; }
+.testi-dots { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px; max-width: 320px; margin-left: auto; margin-right: auto; }
+.testi-all { display: inline-block; margin-top: 26px; color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: 1.5px; border-bottom: 1px solid var(--gold); padding-bottom: 5px; transition: color .3s; }
+.testi-all:hover { color: #fff; }
 .testi-dot { width: 6px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.25); transition: all .4s ease; }
 .testi-dot.on { width: 26px; background: var(--gold); }
 

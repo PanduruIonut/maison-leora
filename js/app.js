@@ -49,6 +49,12 @@
   const TESTIMONIALS = [
     { text: 'Recomand cu toată încrederea! Mădălina este foarte atentă la detalii și talentată în ceea ce face, iar rezultatul final a fost exact ceea ce îmi doream. Se vede că lucrează cu pasiune și dedicare.', name: 'Ștefania V.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-stefania.jpeg', stars: '★★★★★' },
     { text: 'Părul meu era uscat și deteriorat, iar după tratamentul de reparare moleculară parcă nu mai era același păr. Nu cred că l-am avut vreodată atât de strălucitor și sănătos.', name: 'Sandu N.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-sandu.jpeg', stars: '★★★★★' },
+    { text: 'Mădălina este foarte drăguță, transmite calm și căldură — a fost o plăcere. Se vede că îi place să lucreze cu părul și oferă multe sfaturi la întrebări. Revin cu siguranță și recomand cu drag!', name: 'Petra V.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'Este întotdeauna o plăcere. Mădălina e o profesionistă foarte atentă la detalii. Fiecare întâlnire este o terapie pentru părul meu.', name: 'Cristina-Georgiana D.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'She is amazing — no matter what you have in mind, she will listen and counsel you to find what\'s best for your hair. Extremely talented. Once you find her, you don\'t want to let go!', name: 'Anamaria F.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'Mi-a plăcut mult ritmul calm și faptul că a fost prezentă și respectuoasă. Un serviciu de calitate făcut cu discreție și pricepere. Recomand!', name: 'Diana B.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'Sunt foarte mulțumită de serviciile Mădălinei — este foarte atentă la nevoile clienților și foarte răbdătoare. Recomand cu încredere!', name: 'Andreea-Denisa A.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'O experiență plăcută, atmosfera a fost primitoare. O să revin cu siguranță!', name: 'Teodora C.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
     { text: 'Super încântată de experiență. Mădălina este foarte finuță, lucrează atent, iar rezultatele sunt pe măsură!', name: 'Ana H.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
     { text: 'O experiență minunată, ca de obicei. Mulțumesc, Mădălina!', name: 'Diana S.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-diana.jpeg', stars: '★★★★★' }
   ];
