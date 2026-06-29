@@ -9,3 +9,6 @@ Thumbs.db
 
 # Logs / temp
 *.log
+
+# Claude Code worktrees/local
+.claude/
