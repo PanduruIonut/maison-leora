@@ -1,5 +1,5 @@
 /* ============================================================
-   MAISON LÉORA — logica aplicației (vanilla JS, fără build)
+   MĂDĂLINA PANDURU — logica aplicației (vanilla JS, fără build)
    ============================================================ */
 (function () {
   'use strict';
@@ -17,11 +17,11 @@
   const PRODUCTS = [
     { id: 1, brand: 'AURELLE', name: 'Ulei Reparator pentru Păr', cat: 'oils', price: 68, rating: 4.9, img: 'images/product-oil.jpeg', desc: 'Un amestec ușor de uleiuri de camelie și argan care netezește, protejează și adaugă o strălucire luminoasă, ca sticla.' },
     { id: 2, brand: 'MÉLISSE', name: 'Mască Reparatoare de Mătase', cat: 'treatments', price: 54, rating: 4.8, img: 'images/product-mask.jpeg', desc: 'O mască intensivă de cinci minute care reconstruiește legăturile și lasă firele mătăsoase, puternice și profund hrănite.' },
-    { id: 3, brand: 'LÉORA', name: 'Ser cu Luciu Champagne', cat: 'styling', price: 72, rating: 5.0, img: 'images/product-serum.jpeg', desc: 'Serul nostru de finisare emblematic, pentru o strălucire fină în nuanțe de șampanie și un aspect fără frizz.' },
+    { id: 3, brand: 'MĂDĂLINA', name: 'Ser cu Luciu Champagne', cat: 'styling', price: 72, rating: 5.0, img: 'images/product-serum.jpeg', desc: 'Serul nostru de finisare emblematic, pentru o strălucire fină în nuanțe de șampanie și un aspect fără frizz.' },
     { id: 4, brand: 'VERANO', name: 'Spray de Volum', cat: 'styling', price: 42, rating: 4.7, img: 'images/product-mist.jpeg', desc: 'Un spray ușor care ridică de la rădăcină pentru un volum plin, aerisit și de durată.' },
     { id: 5, brand: 'AURELLE', name: 'Șampon Nutritiv', cat: 'cleanse', price: 46, rating: 4.8, img: 'images/product-shampoo.jpeg', desc: 'Un produs de curățare fără sulfați care purifică delicat, păstrând culoarea și hidratarea.' },
     { id: 6, brand: 'MÉLISSE', name: 'Spray cu Protecție Termică', cat: 'styling', price: 38, rating: 4.6, img: 'images/product-heat.jpeg', desc: 'Protecție termică până la 230°C, cu un finisaj mătăsos, non-gras.' },
-    { id: 7, brand: 'LÉORA', name: 'Elixir de Noapte pentru Scalp', cat: 'treatments', price: 88, rating: 4.9, img: 'images/product-elixir.jpeg', desc: 'Un ser de scalp pentru folosire înainte de somn, care echilibrează, calmează și susține creșterea sănătoasă.' },
+    { id: 7, brand: 'MĂDĂLINA', name: 'Elixir de Noapte pentru Scalp', cat: 'treatments', price: 88, rating: 4.9, img: 'images/product-elixir.jpeg', desc: 'Un ser de scalp pentru folosire înainte de somn, care echilibrează, calmează și susține creșterea sănătoasă.' },
     { id: 8, brand: 'VERANO', name: 'Spray Texturizant cu Sare de Mare', cat: 'styling', price: 40, rating: 4.7, img: 'images/product-salt.jpeg', desc: 'Textură naturală, ușor răvășită, cu un finisaj mat, ca la plajă.' }
   ];
 
@@ -37,9 +37,9 @@
   ];
 
   const TESTIMONIALS = [
-    { text: 'Élise mi-a transformat părul în ceva ce nu credeam posibil. Atelierul pare un vis parizian.', name: 'Camille Devereaux', role: 'CLIENTĂ BALAYAGE', photo: 'images/portrait-2.jpeg', stars: '★★★★★' },
+    { text: 'Mădălina mi-a transformat părul în ceva ce nu credeam posibil. Atelierul pare un vis parizian.', name: 'Camille Devereaux', role: 'CLIENTĂ BALAYAGE', photo: 'images/portrait-2.jpeg', stars: '★★★★★' },
     { text: 'Cea mai luxoasă experiență de salon din viața mea. Fiecare detaliu este gândit, fiecare moment este o răsfățare.', name: 'Sofia Marchetti', role: 'CLIENTĂ MIREASĂ', photo: 'images/portrait-1.jpeg', stars: '★★★★★' },
-    { text: 'Traversez tot orașul pentru Maison Léora. Munca de culoare este, pur și simplu, la cu totul alt nivel.', name: 'Amara Okafor', role: 'CLIENTĂ COLORARE', photo: 'images/portrait-4.jpeg', stars: '★★★★★' },
+    { text: 'Traversez tot orașul pentru Mădălina Panduru. Munca de culoare este, pur și simplu, la cu totul alt nivel.', name: 'Amara Okafor', role: 'CLIENTĂ COLORARE', photo: 'images/portrait-4.jpeg', stars: '★★★★★' },
     { text: 'La plecare, m-am simțit ca cea mai rafinată versiune a mea. Măiestrie cu adevărat couture.', name: 'Helena Ross', role: 'TUNS SEMNĂTURĂ', photo: 'images/gallery-8.jpeg', stars: '★★★★★' }
   ];
 
@@ -155,7 +155,7 @@
   }
   function renderInstagram() {
     $('#instaGrid').innerHTML = INSTAGRAM.map((img) => `
-      <div class="insta-cell"><img src="${img}" alt="Maison Léora pe Instagram"><div class="ov">◎</div></div>`).join('');
+      <div class="insta-cell"><img src="${img}" alt="Mădălina Panduru pe Instagram"><div class="ov">◎</div></div>`).join('');
   }
 
   /* ---------------- Testimoniale ---------------- */
@@ -480,8 +480,8 @@
 
   /* ---------------- Bară de navigare (la scroll) ---------------- */
   function updateNavChrome() {
-    const solid = (window.scrollY || 0) > 40 || state.page !== 'home';
-    $('#nav').classList.toggle('solid', solid);
+    // hero is light now, so the nav stays solid (dark text) on every screen
+    $('#nav').classList.add('solid');
   }
 
   /* ---------------- Efecte de scroll ---------------- */
