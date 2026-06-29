@@ -6,12 +6,12 @@
 
   /* ---------------- Date ---------------- */
   const SERVICES = [
-    { num: '01', name: 'Tuns & Coafat Semnătură', desc: 'O consultație personalizată, tuns de precizie și un finisaj luxos, adaptate trăsăturilor tale.', duration: '90 MIN', price: 'de la $180' },
-    { num: '02', name: 'Balayage Couture', desc: 'Culoare pictată manual, dimensională, pentru o luminozitate naturală, sărutată de soare.', duration: '180 MIN', price: 'de la $320' },
-    { num: '03', name: 'Netezire cu Keratină', desc: 'Netezime ca sticla, fără frizz, care durează luni întregi de dimineți fără efort.', duration: '150 MIN', price: 'de la $260' },
-    { num: '04', name: 'Coafuri de Mireasă & Eveniment', desc: 'Coafuri editoriale pentru cele mai memorabile momente ale tale, probă inclusă.', duration: '120 MIN', price: 'de la $240' },
-    { num: '05', name: 'Ritual de Lux pentru Scalp', desc: 'Un masaj și tratament reparator al scalpului, pentru a hrăni părul de la rădăcină.', duration: '60 MIN', price: 'de la $140' },
-    { num: '06', name: 'Luciu & Tratament', desc: 'Un luciu ca oglinda și o reparare profundă a legăturilor pentru strălucire instantanee.', duration: '75 MIN', price: 'de la $160' }
+    { num: '01', name: 'Tuns & Scalp Detox', desc: 'Spălat, tuns și aranjat din perie, cu un ritual de detoxifiere a scalpului pentru un păr sănătos.', duration: '1H 15MIN', price: 'de la 270 lei' },
+    { num: '02', name: 'Vopsit Rădăcină', desc: 'Reîmprospătarea culorii la rădăcină cu produse profesionale care păstrează hidratarea naturală a părului.', duration: '2H 30MIN', price: '300 – 380 lei' },
+    { num: '03', name: 'Vopsit Complet', desc: 'Colorare integrală pe același ton sau mai închis. Include consumabile, spălat și aranjat de zi.', duration: '3H', price: '400 – 500 lei' },
+    { num: '04', name: 'Coafat Mireasă', desc: 'Coafură de mireasă personalizată, cu probă opțională, creată să reziste impecabil întreaga zi.', duration: '1H 45MIN', price: '700 lei' },
+    { num: '05', name: 'Tratament Nashi Argan', desc: 'Tratament profesional de hidratare intensă pentru toate tipurile de păr, cu efect de până la 2 luni.', duration: '1H 30MIN', price: '300 lei' },
+    { num: '06', name: 'SPA Hair Relax', desc: 'Curățare, exfoliere și masaj capilar de relaxare, cu tratament de hidratare pentru scalp și păr.', duration: '1H', price: '150 lei' }
   ];
 
   const PRODUCTS = [
@@ -37,14 +37,14 @@
   ];
 
   const TESTIMONIALS = [
-    { text: 'Mădălina mi-a transformat părul în ceva ce nu credeam posibil. Atelierul pare un vis parizian.', name: 'Camille Devereaux', role: 'CLIENTĂ BALAYAGE', photo: 'images/portrait-2.jpeg', stars: '★★★★★' },
-    { text: 'Cea mai luxoasă experiență de salon din viața mea. Fiecare detaliu este gândit, fiecare moment este o răsfățare.', name: 'Sofia Marchetti', role: 'CLIENTĂ MIREASĂ', photo: 'images/portrait-1.jpeg', stars: '★★★★★' },
-    { text: 'Traversez tot orașul pentru Mădălina Panduru. Munca de culoare este, pur și simplu, la cu totul alt nivel.', name: 'Amara Okafor', role: 'CLIENTĂ COLORARE', photo: 'images/portrait-4.jpeg', stars: '★★★★★' },
-    { text: 'La plecare, m-am simțit ca cea mai rafinată versiune a mea. Măiestrie cu adevărat couture.', name: 'Helena Ross', role: 'TUNS SEMNĂTURĂ', photo: 'images/gallery-8.jpeg', stars: '★★★★★' }
+    { text: 'Recomand cu toată încrederea! Mădălina este foarte atentă la detalii și talentată în ceea ce face, iar rezultatul final a fost exact ceea ce îmi doream. Se vede că lucrează cu pasiune și dedicare.', name: 'Ștefania V.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-1.jpeg', stars: '★★★★★' },
+    { text: 'Părul meu era uscat și deteriorat, iar după tratamentul de reparare moleculară parcă nu mai era același păr. Nu cred că l-am avut vreodată atât de strălucitor și sănătos.', name: 'Sandu N.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-2.jpeg', stars: '★★★★★' },
+    { text: 'Super încântată de experiență. Mădălina este foarte finuță, lucrează atent, iar rezultatele sunt pe măsură!', name: 'Ana H.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-4.jpeg', stars: '★★★★★' },
+    { text: 'O experiență minunată, ca de obicei. Mulțumesc, Mădălina!', name: 'Diana S.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-3.jpeg', stars: '★★★★★' }
   ];
 
   const INSTAGRAM = ['images/portrait-2.jpeg', 'images/portrait-3.jpeg', 'images/portrait-1.jpeg', 'images/portrait-4.jpeg', 'images/gallery-7.jpeg', 'images/gallery-5.jpeg'];
-  const MARQUEE = ['Balayage', 'Culoare Couture', 'Ritualuri cu Keratină', 'Coafuri de Mireasă', 'Terapie pentru Scalp'];
+  const MARQUEE = ['Tuns & Coafat', 'Vopsit', 'Tratamente Nashi Argan', 'Coafat Mireasă', 'Scalp Detox'];
   const CATEGORIES = [['all', 'TOATE'], ['cleanse', 'CURĂȚARE'], ['treatments', 'TRATAMENTE'], ['styling', 'STYLING'], ['oils', 'ULEIURI']];
   const MERO_URL = 'https://mero.ro/p/madalina-panduru-hairstylist';
 
