@@ -436,6 +436,14 @@ em { font-style: italic; }
 .summary-total .v { font-family: var(--serif); font-size: 32px; color: var(--gold-light); }
 .summary-note { font-size: 11px; color: #8a8078; line-height: 1.6; margin-top: 22px; }
 
+/* ---------- Booking → MERO landing ---------- */
+.booking-intro { font-size: 15px; line-height: 1.7; color: var(--text); max-width: 580px; margin: 18px auto 0; }
+.booking-cta { margin-top: 30px; }
+.booking-cta-side { width: 100%; margin-top: 22px; padding: 16px; }
+a.bservice { text-decoration: none; color: inherit; }
+.bservice:hover { border-color: var(--gold); background: #FBF7EF; transform: translateX(3px); }
+.bservice-arrow { font-size: 16px; color: var(--gold-deep); }
+
 /* ---------- Confirmation ---------- */
 .confirm { text-align: center; padding: 70px 20px; animation: floatUp .6s ease both; }
 .confirm-ring { width: 104px; height: 104px; border-radius: 50%; background: #fff; box-shadow: 0 24px 50px -20px rgba(150,115,60,.4); display: flex; align-items: center; justify-content: center; margin: 0 auto; animation: ringPop .6s cubic-bezier(.2,.9,.3,1.2) both; border: 1px solid var(--card-line); }

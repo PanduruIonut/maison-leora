@@ -46,10 +46,7 @@
   const INSTAGRAM = ['images/portrait-2.jpeg', 'images/portrait-3.jpeg', 'images/portrait-1.jpeg', 'images/portrait-4.jpeg', 'images/gallery-7.jpeg', 'images/gallery-5.jpeg'];
   const MARQUEE = ['Balayage', 'Culoare Couture', 'Ritualuri cu Keratină', 'Coafuri de Mireasă', 'Terapie pentru Scalp'];
   const CATEGORIES = [['all', 'TOATE'], ['cleanse', 'CURĂȚARE'], ['treatments', 'TRATAMENTE'], ['styling', 'STYLING'], ['oils', 'ULEIURI']];
-  const WEEKDAYS = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
-  const TIME_SLOTS = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00', '19:00'];
-  const UNAVAILABLE = ['12:00', '15:00'];
-  const STEP_LABELS = [['1', 'SERVICIU'], ['2', 'DATĂ & ORĂ'], ['3', 'DETALII']];
+  const MERO_URL = 'https://mero.ro/p/madalina-panduru-hairstylist';
 
   /* ---------------- Stare ---------------- */
   const state = {
@@ -63,16 +60,7 @@
     mobileNavOpen: false,
     shopCat: 'all',
     sort: 'featured',
-    search: '',
-    bStep: 1,
-    bService: null,
-    bDate: null,
-    bTime: null,
-    bName: '',
-    bEmail: '',
-    bPhone: '',
-    bNotes: '',
-    bDone: false
+    search: ''
   };
 
   /* ---------------- Helpers ---------------- */
@@ -311,141 +299,37 @@
       </div>`;
   }
 
-  /* ---------------- Rezervare ---------------- */
-  function buildCalendar() {
-    const year = 2026, month = 6; // Iulie
-    const first = new Date(year, month, 1).getDay();
-    const days = new Date(year, month + 1, 0).getDate();
-    const arr = [];
-    for (let i = 0; i < first; i++) arr.push(null);
-    for (let d = 1; d <= days; d++) {
-      const dow = new Date(year, month, d).getDay();
-      arr.push({ d, disabled: dow === 0 || dow === 1 });
-    }
-    return arr;
-  }
-  function canProceed() {
-    return (state.bStep === 1 && !!state.bService) ||
-      (state.bStep === 2 && state.bDate && state.bTime) ||
-      (state.bStep === 3 && state.bName.trim() && state.bEmail.trim());
-  }
-  function summaryDate() { return state.bDate ? (state.bDate + ' Iulie 2026') : '—'; }
-  function summaryPrice() { return state.bService ? state.bService.price.replace('de la ', '') : '—'; }
-
+  /* ---------------- Rezervare (prin MERO) ---------------- */
   function renderBooking() {
     const body = $('#bookingBody');
-    if (state.bDone) {
-      body.innerHTML = `
-        <div class="confirm">
-          <div class="confirm-ring">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M14 25l7 7 14-15" stroke="#D6B980" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60"/></svg>
-          </div>
-          <h1>Programarea ta<br>este confirmată</h1>
-          <p>O confirmare a fost trimisă la <strong>${esc(state.bEmail)}</strong>.<br>Abia așteptăm să te primim.</p>
-          <div class="confirm-card">
-            <div class="confirm-row"><span class="k">SERVICIU</span><span class="v">${esc(state.bService ? state.bService.name : '—')}</span></div>
-            <div class="confirm-row"><span class="k">DATĂ</span><span class="v">${summaryDate()}</span></div>
-            <div class="confirm-row"><span class="k">ORĂ</span><span class="v">${state.bTime || '—'}</span></div>
-            <div class="confirm-row"><span class="k">CLIENT</span><span class="v">${esc(state.bName)}</span></div>
-          </div>
-          <button class="btn btn-dark" style="margin-top:40px" data-nav="home">ÎNAPOI ACASĂ</button>
-        </div>`;
-      return;
-    }
-
-    const stepNum = state.bStep;
-    const stepper = STEP_LABELS.map(([num, label], i) => {
-      const n = i + 1, done = stepNum > n, cur = stepNum === n;
-      const line = i < 2 ? `<div class="step-line${done ? ' done' : ''}"></div>` : '';
-      return `
-        <div class="step${i < 2 ? ' grow' : ''}">
-          <div class="step-col">
-            <div class="step-dot${cur || done ? ' active' : ''}">${done ? '✓' : num}</div>
-            <span class="step-label${cur ? ' active' : ''}">${label}</span>
-          </div>${line}
-        </div>`;
-    }).join('');
-
-    let stepContent = '';
-    if (state.bStep === 1) {
-      const rows = SERVICES.map((s) => {
-        const active = state.bService && state.bService.name === s.name;
-        return `
-          <button class="bservice${active ? ' active' : ''}" data-bservice="${esc(s.name)}">
-            <div><div class="bservice-name">${esc(s.name)}</div><div class="bservice-dur">${s.duration}</div></div>
-            <div class="bservice-right"><span class="bservice-price">${esc(s.price)}</span><span class="bservice-check">${active ? '✓' : ''}</span></div>
-          </button>`;
-      }).join('');
-      stepContent = `
-        <h2>Alege un serviciu</h2>
-        <p class="sub">Alege tratamentul pe care vrei să-l rezervi.</p>
-        <div class="bservices">${rows}</div>`;
-    } else if (state.bStep === 2) {
-      const cal = buildCalendar();
-      const wd = WEEKDAYS.map((w) => `<div class="cal-wd">${w}</div>`).join('');
-      const days = cal.map((c) => {
-        if (!c) return `<button class="cal-day empty" disabled></button>`;
-        const active = state.bDate === c.d;
-        const cls = 'cal-day' + (c.disabled ? ' disabled' : '') + (active ? ' active' : '');
-        return `<button class="${cls}" ${c.disabled ? 'disabled' : `data-calday="${c.d}"`}>${c.d}</button>`;
-      }).join('');
-      const slots = TIME_SLOTS.map((t) => {
-        const dis = UNAVAILABLE.includes(t), active = state.bTime === t;
-        const cls = 'slot' + (dis ? ' disabled' : '') + (active ? ' active' : '');
-        return `<button class="${cls}" ${dis ? 'disabled' : `data-slot="${t}"`}>${t}</button>`;
-      }).join('');
-      stepContent = `
-        <h2>Alege data &amp; ora</h2>
-        <p class="sub">Iulie 2026</p>
-        <div class="cal-grid">${wd}${days}</div>
-        <div class="slots-label">ORE DISPONIBILE</div>
-        <div class="slots">${slots}</div>`;
-    } else {
-      stepContent = `
-        <h2>Datele tale</h2>
-        <p class="sub">Vom trimite confirmarea și mementourile aici.</p>
-        <div class="field">
-          <label><span class="field-label">NUME COMPLET</span><input data-field="bName" value="${esc(state.bName)}" placeholder="Numele tău"></label>
-          <label><span class="field-label">ADRESĂ DE EMAIL</span><input data-field="bEmail" type="email" value="${esc(state.bEmail)}" placeholder="tu@email.com"></label>
-          <label><span class="field-label">TELEFON (OPȚIONAL)</span><input data-field="bPhone" value="${esc(state.bPhone)}" placeholder="+40 ..."></label>
-          <label><span class="field-label">NOTE (OPȚIONAL)</span><textarea data-field="bNotes" rows="2" placeholder="Ceva ce ar trebui să știm?">${esc(state.bNotes)}</textarea></label>
-        </div>`;
-    }
-
-    const proceed = canProceed();
-    const nextLabel = state.bStep === 3 ? 'CONFIRMĂ REZERVAREA' : 'CONTINUĂ';
-
+    const services = SERVICES.map((s) => `
+      <a class="bservice" href="${MERO_URL}" target="_blank" rel="noopener noreferrer">
+        <div><div class="bservice-name">${esc(s.name)}</div><div class="bservice-dur">${s.duration}</div></div>
+        <div class="bservice-right"><span class="bservice-price">${esc(s.price)}</span><span class="bservice-arrow">↗</span></div>
+      </a>`).join('');
     body.innerHTML = `
       <div class="booking-head">
         <p class="eyebrow">REZERVĂRI</p>
         <h1>Rezervă-ți programarea</h1>
+        <p class="booking-intro">Programările se fac online prin <strong>MERO</strong> — alegi serviciul, vezi disponibilitatea în timp real și primești confirmare și memento-uri automate.</p>
+        <a class="btn btn-dark booking-cta" href="${MERO_URL}" target="_blank" rel="noopener noreferrer">REZERVĂ PE MERO ↗</a>
       </div>
-      <div class="stepper">${stepper}</div>
       <div class="booking-grid">
         <div class="booking-panel">
-          ${stepContent}
-          <div class="booking-nav">
-            <button class="back-btn" data-back ${state.bStep === 1 ? 'disabled' : ''}>← ÎNAPOI</button>
-            <button class="next-btn" data-next ${proceed ? '' : 'disabled'}>${nextLabel}</button>
-          </div>
+          <h2>Serviciile noastre</h2>
+          <p class="sub">Apasă un serviciu pentru a continua pe MERO și a alege data și ora.</p>
+          <div class="bservices">${services}</div>
         </div>
         <div class="summary">
-          <p class="summary-title">REZERVAREA TA</p>
-          <div class="summary-row"><span class="k">Serviciu</span><span class="v">${esc(state.bService ? state.bService.name : '—')}</span></div>
-          <div class="summary-row"><span class="k">Dată</span><span class="v">${summaryDate()}</span></div>
-          <div class="summary-row"><span class="k">Oră</span><span class="v">${state.bTime || '—'}</span></div>
-          <div class="summary-total"><span class="k">De la</span><span class="v">${summaryPrice()}</span></div>
-          <p class="summary-note">Un avans de 30% îți asigură programarea. Restul se achită în salon.</p>
+          <p class="summary-title">PROGRAMARE ONLINE</p>
+          <div class="summary-row"><span class="k">Platformă</span><span class="v">MERO</span></div>
+          <div class="summary-row"><span class="k">Confirmare</span><span class="v">Instant</span></div>
+          <div class="summary-row"><span class="k">Memento-uri</span><span class="v">Automat</span></div>
+          <a class="btn btn-gold booking-cta-side" href="${MERO_URL}" target="_blank" rel="noopener noreferrer">DESCHIDE MERO ↗</a>
+          <p class="summary-note">Ești redirecționat(ă) către pagina oficială MERO a atelierului, unde îți finalizezi programarea în siguranță.</p>
         </div>
       </div>`;
-
-    // păstrează focusul pe câmpul activ după re-randare
-    if (state.bStep === 3 && lastFocusedField) {
-      const f = body.querySelector(`[data-field="${lastFocusedField}"]`);
-      if (f) { f.focus(); const v = f.value; f.value = ''; f.value = v; }
-    }
   }
-  let lastFocusedField = null;
 
   /* ---------------- Navigare ---------------- */
   function setPage(page) {
@@ -517,15 +401,12 @@
 
   /* ---------------- Delegare evenimente ---------------- */
   function onClick(e) {
-    const t = e.target.closest('[data-nav],[data-section],[data-reserve],[data-add],[data-wish],[data-quickview],[data-lightbox],[data-testi],[data-cat],[data-shop-from-cart],[data-checkout],[data-close-cart],[data-inc],[data-dec],[data-remove],[data-close-qv],[data-qv-add],[data-qv-wish],[data-qv-stop],[data-close-lb],[data-lb-prev],[data-lb-next],[data-close-mobile],[data-bservice],[data-calday],[data-slot],[data-back],[data-next]');
+    const t = e.target.closest('[data-nav],[data-section],[data-reserve],[data-add],[data-wish],[data-quickview],[data-lightbox],[data-testi],[data-cat],[data-shop-from-cart],[data-checkout],[data-close-cart],[data-inc],[data-dec],[data-remove],[data-close-qv],[data-qv-add],[data-qv-wish],[data-qv-stop],[data-close-lb],[data-lb-prev],[data-lb-next],[data-close-mobile]');
     if (!t) return;
 
     if (t.hasAttribute('data-nav')) return setPage(t.getAttribute('data-nav'));
     if (t.hasAttribute('data-section')) return goSection(t.getAttribute('data-section'));
-    if (t.hasAttribute('data-reserve')) {
-      const s = SERVICES.find((x) => x.name === t.getAttribute('data-reserve'));
-      state.bService = s; state.bStep = 1; state.bDone = false; return setPage('booking');
-    }
+    if (t.hasAttribute('data-reserve')) return setPage('booking');
     if (t.hasAttribute('data-add')) return addToCart(+t.getAttribute('data-add'));
     if (t.hasAttribute('data-wish')) return toggleWish(+t.getAttribute('data-wish'));
     if (t.hasAttribute('data-quickview')) { state.quickView = +t.getAttribute('data-quickview'); return renderQuickView(); }
@@ -551,28 +432,10 @@
     if (t.hasAttribute('data-lb-next')) { state.lightbox = (state.lightbox + 1) % GALLERY.length; return renderLightbox(); }
 
     if (t.hasAttribute('data-close-mobile')) { state.mobileNavOpen = false; return renderMobileNav(); }
-
-    if (t.hasAttribute('data-bservice')) { state.bService = SERVICES.find((x) => x.name === t.getAttribute('data-bservice')); return renderBooking(); }
-    if (t.hasAttribute('data-calday')) { state.bDate = +t.getAttribute('data-calday'); return renderBooking(); }
-    if (t.hasAttribute('data-slot')) { state.bTime = t.getAttribute('data-slot'); return renderBooking(); }
-    if (t.hasAttribute('data-back')) { if (state.bStep > 1) { state.bStep -= 1; renderBooking(); } return; }
-    if (t.hasAttribute('data-next')) {
-      if (!canProceed()) return;
-      if (state.bStep === 3) { state.bDone = true; renderBooking(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-      else { state.bStep += 1; renderBooking(); }
-      return;
-    }
   }
 
   function onInput(e) {
-    const t = e.target;
-    if (t.id === 'shopSearch') { state.search = t.value; renderShop(); return; }
-    if (t.hasAttribute && t.hasAttribute('data-field')) {
-      const f = t.getAttribute('data-field');
-      lastFocusedField = f;
-      state[f] = t.value;
-      renderBooking();
-    }
+    if (e.target.id === 'shopSearch') { state.search = e.target.value; renderShop(); }
   }
   function onChange(e) {
     if (e.target.id === 'shopSort') { state.sort = e.target.value; renderShop(); }
