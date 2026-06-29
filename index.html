@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Léora · Atelier Parizian de Coafor</title>
+<meta name="description" content="Maison Léora — atelier parizian de coafor care oferă culoare personalizată, tunsori couture și ritualuri de lux din 2009.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ TOP NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <button class="brand" data-nav="home">
+      <span class="brand-name">MAISON LÉORA</span>
+      <span class="brand-sub">ATELIER DE COAFOR · PARIS</span>
+    </button>
+    <div class="nav-links">
+      <button class="nav-link" data-section="services">SERVICII</button>
+      <button class="nav-link" data-section="gallery">GALERIE</button>
+      <button class="nav-link" data-nav="shop" data-link="shop">MAGAZIN</button>
+      <button class="nav-link" data-section="contact">CONTACT</button>
+      <span class="nav-divider"></span>
+      <button class="nav-link bag-btn" id="bagBtn">COȘ<span class="bag-count" id="bagCount" hidden>0</span></button>
+      <button class="nav-book" data-nav="booking">REZERVĂ</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Meniu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ MOBILE NAV DRAWER (mount) ============ -->
+<div id="mobileNavMount"></div>
+
+<!-- ============================================================ HOME ============================================================ -->
+<main class="page" id="screen-home" data-screen="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">ATELIER PARIZIAN DE COAFOR · DIN 2009</p>
+      <h1>Unde arta<br><em>întâlnește</em> eleganța</h1>
+      <p class="hero-lede">Un sanctuar al frumuseții rafinate. Culoare personalizată, tunsori couture și ritualuri create complet în jurul tău.</p>
+      <div class="hero-cta">
+        <button class="btn btn-gold" data-nav="booking">REZERVĂ O PROGRAMARE</button>
+        <button class="btn btn-glass" data-section="services">DESCOPERĂ SERVICIILE</button>
+      </div>
+    </div>
+    <button class="scroll-cue" data-section="services">
+      <span>DERULEAZĂ</span>
+      <span class="scroll-line"></span>
+    </button>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-grid">
+      <div class="reveal about-photo-wrap">
+        <div class="about-photo">
+          <img src="images/stylist.jpeg" alt="Élise Léora în atelierul ei">
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-num"><span data-counter data-target="17">0</span>+</div>
+          <div class="about-badge-label">ANI DE MĂIESTRIE</div>
+        </div>
+      </div>
+      <div class="reveal d1 about-copy">
+        <p class="eyebrow">ATELIERUL</p>
+        <h2>Părul ca formă de<br>exprimare personală</h2>
+        <p class="about-lede">Fondat de maestrul colorist Élise Léora, atelierul nostru îmbină tehnica pariziană cu o abordare profund personală. Fiecare programare începe cu o consultație și se încheie cu un păr care îți seamănă întru totul, <em>ție</em>.</p>
+        <div class="timeline">
+          <div class="timeline-row"><span class="timeline-year">2009</span><span class="timeline-text">Am deschis primul studio Léora în Marais.</span></div>
+          <div class="timeline-row"><span class="timeline-year">2016</span><span class="timeline-text">Desemnată <em>Colorista Anului</em> de L'Édition Beauté.</span></div>
+          <div class="timeline-row"><span class="timeline-year">2022</span><span class="timeline-text">Am lansat colecția de îngrijire emblematică Léora.</span></div>
+        </div>
+        <div class="about-stats">
+          <div><div class="stat-num"><span data-counter data-target="12">0</span>k</div><div class="stat-label">CLIENTE COAFATE</div></div>
+          <div><div class="stat-num"><span data-counter data-target="9">0</span></div><div class="stat-label">PREMII ÎN INDUSTRIE</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="reveal services-head">
+        <p class="eyebrow">SERVICII SELECTE</p>
+        <h2 class="section-title">Fiecare detaliu, gândit</h2>
+      </div>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="reveal gallery-head">
+      <div>
+        <p class="eyebrow">PORTOFOLIUL</p>
+        <h2 class="section-title">O galerie de transformări</h2>
+      </div>
+      <p class="gallery-note">Apasă pe orice imagine pentru a vedea munca noastră în detaliu editorial.</p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE -->
+  <section class="product-showcase">
+    <div class="wrap">
+      <div class="reveal products-head">
+        <div>
+          <p class="eyebrow">COLECȚIA</p>
+          <h2 class="section-title">Esențiale de salon profesional</h2>
+        </div>
+        <button class="shop-all" data-nav="shop">VEZI TOT →</button>
+      </div>
+      <div class="products-grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <p class="eyebrow">CUVINTE FRUMOASE</p>
+      <div class="testi-stage" id="testiStage"></div>
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="insta">
+    <div class="reveal insta-head">
+      <p class="eyebrow">@MAISONLEORA</p>
+      <h2>Urmărește atelierul</h2>
+    </div>
+    <div class="insta-grid" id="instaGrid"></div>
+    <div class="insta-foot">
+      <button class="btn btn-outline">URMĂREȘTE PE INSTAGRAM</button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="eyebrow">VIZITEAZĂ-NE</p>
+        <h2>Rezervă-ți<br>momentul de liniște</h2>
+        <div class="contact-blocks">
+          <div><div class="contact-label">ATELIER</div><div class="contact-value">14 Rue des Francs-Bourgeois<br>75004 Paris, Franța</div></div>
+          <div><div class="contact-label">PROGRAM</div><div class="contact-hours">Mar – Vin · 9:00 – 19:00<br>Sâmbătă · 9:00 – 17:00<br>Dum – Lun · Închis</div></div>
+          <div><div class="contact-label">CONTACT</div><div class="contact-value">bonjour@maisonleora.com<br>+33 1 42 78 00 00</div></div>
+        </div>
+        <div class="socials">
+          <span class="social">◎</span>
+          <span class="social">f</span>
+          <span class="social">in</span>
+        </div>
+        <button class="btn btn-dark" style="margin-top:42px" data-nav="booking">REZERVĂ-ȚI VIZITA</button>
+      </div>
+      <div class="contact-map">
+        <div class="grid"></div>
+        <div class="pin-wrap">
+          <div class="pin"></div>
+          <span class="pin-label">[ HARTĂ ÎNCORPORATĂ ]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ SHOP ============================================================ -->
+<main class="page screen-pad" id="screen-shop" data-screen="shop" hidden>
+  <div class="shop-banner">
+    <div class="glow"></div>
+    <div class="inner">
+      <p class="eyebrow">BUTICUL</p>
+      <h1>Colecția de Îngrijire Léora</h1>
+      <p>Formule profesionale, alese pentru rezultate de salon acasă.</p>
+    </div>
+  </div>
+  <div class="shop-body">
+    <div class="shop-toolbar">
+      <div class="shop-cats" id="shopCats"></div>
+      <div class="shop-tools">
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="shopSearch" placeholder="Caută produse" autocomplete="off">
+        </div>
+        <select class="sort-select" id="shopSort">
+          <option value="featured">Recomandate</option>
+          <option value="low">Preț: crescător</option>
+          <option value="high">Preț: descrescător</option>
+          <option value="rating">Cele mai apreciate</option>
+        </select>
+      </div>
+    </div>
+    <p class="result-count" id="resultCount">0 produse</p>
+    <div class="shop-grid" id="shopGrid"></div>
+    <div class="no-results" id="noResults" hidden>
+      <h3>Niciun produs găsit</h3>
+      <p>Încearcă o altă categorie sau alt termen de căutare.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================ BOOKING ============================================================ -->
+<main class="page booking" id="screen-booking" data-screen="booking" hidden>
+  <div class="booking-body" id="bookingBody"></div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">MAISON LÉORA</div>
+      <p class="footer-tag">Atelier parizian de coafor care creează frumusețe personalizată din 2009.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <span class="footer-col-title">EXPLOREAZĂ</span>
+        <button data-section="services">Servicii</button>
+        <button data-section="gallery">Galerie</button>
+        <button data-nav="shop">Magazin</button>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">VIZITEAZĂ</span>
+        <button data-section="contact">Contact</button>
+        <button data-nav="booking">Rezervare</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MAISON LÉORA. TOATE DREPTURILE REZERVATE.</span>
+    <span>CONFIDENȚIALITATE · TERMENI</span>
+  </div>
+</footer>
+
+<!-- ============ OVERLAY MOUNTS ============ -->
+<div id="cartMount"></div>
+<div id="quickViewMount"></div>
+<div id="lightboxMount"></div>
+
+<!-- ============ STICKY BOOK (mobile) ============ -->
+<button class="sticky-book" id="stickyBook" data-nav="booking">REZERVĂ O PROGRAMARE</button>
+
+<script src="js/app.js"></script>
+</body>
+</html>
