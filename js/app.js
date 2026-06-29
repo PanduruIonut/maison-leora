@@ -47,10 +47,10 @@
   ];
 
   const TESTIMONIALS = [
-    { text: 'Recomand cu toată încrederea! Mădălina este foarte atentă la detalii și talentată în ceea ce face, iar rezultatul final a fost exact ceea ce îmi doream. Se vede că lucrează cu pasiune și dedicare.', name: 'Ștefania V.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-1.jpeg', stars: '★★★★★' },
-    { text: 'Părul meu era uscat și deteriorat, iar după tratamentul de reparare moleculară parcă nu mai era același păr. Nu cred că l-am avut vreodată atât de strălucitor și sănătos.', name: 'Sandu N.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-2.jpeg', stars: '★★★★★' },
-    { text: 'Super încântată de experiență. Mădălina este foarte finuță, lucrează atent, iar rezultatele sunt pe măsură!', name: 'Ana H.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-4.jpeg', stars: '★★★★★' },
-    { text: 'O experiență minunată, ca de obicei. Mulțumesc, Mădălina!', name: 'Diana S.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/portrait-3.jpeg', stars: '★★★★★' }
+    { text: 'Recomand cu toată încrederea! Mădălina este foarte atentă la detalii și talentată în ceea ce face, iar rezultatul final a fost exact ceea ce îmi doream. Se vede că lucrează cu pasiune și dedicare.', name: 'Ștefania V.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-stefania.jpeg', stars: '★★★★★' },
+    { text: 'Părul meu era uscat și deteriorat, iar după tratamentul de reparare moleculară parcă nu mai era același păr. Nu cred că l-am avut vreodată atât de strălucitor și sănătos.', name: 'Sandu N.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-sandu.jpeg', stars: '★★★★★' },
+    { text: 'Super încântată de experiență. Mădălina este foarte finuță, lucrează atent, iar rezultatele sunt pe măsură!', name: 'Ana H.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'O experiență minunată, ca de obicei. Mulțumesc, Mădălina!', name: 'Diana S.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-diana.jpeg', stars: '★★★★★' }
   ];
 
   const INSTAGRAM = ['images/portrait-2.jpeg', 'images/portrait-3.jpeg', 'images/portrait-1.jpeg', 'images/portrait-4.jpeg', 'images/gallery-7.jpeg', 'images/gallery-5.jpeg'];
@@ -171,7 +171,7 @@
         <div class="testi-stars">${t.stars}</div>
         <p class="testi-text">„${esc(t.text)}”</p>
         <div class="testi-author">
-          <div class="testi-avatar"><img src="${t.photo}" alt="${esc(t.name)}"></div>
+          <div class="testi-avatar">${t.photo ? `<img src="${t.photo}" alt="${esc(t.name)}">` : `<span class="testi-initial">${esc(t.name.trim().charAt(0))}</span>`}</div>
           <div class="testi-meta"><div class="testi-name">${esc(t.name)}</div><div class="testi-role">${t.role}</div></div>
         </div>
       </div>`;

@@ -286,6 +286,7 @@ em { font-style: italic; }
 .testi-author { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 36px; }
 .testi-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
 .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testi-initial { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #e8e2da; color: #6f655c; font-size: 18px; font-weight: 500; }
 .testi-meta { text-align: left; }
 .testi-name { font-size: 14px; font-weight: 500; }
 .testi-role { font-size: 11px; color: #9a9088; letter-spacing: 1px; }
