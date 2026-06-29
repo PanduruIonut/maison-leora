@@ -5,13 +5,23 @@
   'use strict';
 
   /* ---------------- Date ---------------- */
+  // Iconițe line-art per serviciu — fără numerotare, ca să nu pară pași în ordine.
+  const SVG = (paths) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+  const ICON = {
+    scissors: SVG('<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/>'),
+    brush: SVG('<path d="M9.06 11.9l8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/>'),
+    droplet: SVG('<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>'),
+    heart: SVG('<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>'),
+    leaf: SVG('<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/>'),
+    feather: SVG('<path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/>')
+  };
   const SERVICES = [
-    { num: '01', name: 'Tuns & Scalp Detox', desc: 'Spălat, tuns și aranjat din perie, cu un ritual de detoxifiere a scalpului pentru un păr sănătos.', duration: '1H 15MIN', price: 'de la 270 lei' },
-    { num: '02', name: 'Vopsit Rădăcină', desc: 'Reîmprospătarea culorii la rădăcină cu produse profesionale care păstrează hidratarea naturală a părului.', duration: '2H 30MIN', price: '300 – 380 lei' },
-    { num: '03', name: 'Vopsit Complet', desc: 'Colorare integrală pe același ton sau mai închis. Include consumabile, spălat și aranjat de zi.', duration: '3H', price: '400 – 500 lei' },
-    { num: '04', name: 'Coafat Mireasă', desc: 'Coafură de mireasă personalizată, cu probă opțională, creată să reziste impecabil întreaga zi.', duration: '1H 45MIN', price: '700 lei' },
-    { num: '05', name: 'Tratament Nashi Argan', desc: 'Tratament profesional de hidratare intensă pentru toate tipurile de păr, cu efect de până la 2 luni.', duration: '1H 30MIN', price: '300 lei' },
-    { num: '06', name: 'SPA Hair Relax', desc: 'Curățare, exfoliere și masaj capilar de relaxare, cu tratament de hidratare pentru scalp și păr.', duration: '1H', price: '150 lei' }
+    { icon: ICON.scissors, name: 'Tuns & Scalp Detox', desc: 'Spălat, tuns și aranjat din perie, cu un ritual de detoxifiere a scalpului pentru un păr sănătos.', duration: '1H 15MIN', price: 'de la 270 lei' },
+    { icon: ICON.brush, name: 'Vopsit Rădăcină', desc: 'Reîmprospătarea culorii la rădăcină cu produse profesionale care păstrează hidratarea naturală a părului.', duration: '2H 30MIN', price: '300 – 380 lei' },
+    { icon: ICON.droplet, name: 'Vopsit Complet', desc: 'Colorare integrală pe același ton sau mai închis. Include consumabile, spălat și aranjat de zi.', duration: '3H', price: '400 – 500 lei' },
+    { icon: ICON.heart, name: 'Coafat Mireasă', desc: 'Coafură de mireasă personalizată, cu probă opțională, creată să reziste impecabil întreaga zi.', duration: '1H 45MIN', price: '700 lei' },
+    { icon: ICON.leaf, name: 'Tratament Nashi Argan', desc: 'Tratament profesional de hidratare intensă pentru toate tipurile de păr, cu efect de până la 2 luni.', duration: '1H 30MIN', price: '300 lei' },
+    { icon: ICON.feather, name: 'SPA Hair Relax', desc: 'Curățare, exfoliere și masaj capilar de relaxare, cu tratament de hidratare pentru scalp și păr.', duration: '1H', price: '150 lei' }
   ];
 
   const PRODUCTS = [
@@ -124,7 +134,7 @@
   function renderServices() {
     $('#servicesGrid').innerHTML = SERVICES.map((s) => `
       <div class="reveal service-card">
-        <div class="service-num">${s.num}</div>
+        <div class="service-num">${s.icon}</div>
         <h3>${esc(s.name)}</h3>
         <p class="service-desc">${esc(s.desc)}</p>
         <div class="service-meta"><span class="service-dur">${s.duration}</span><span class="service-price">${esc(s.price)}</span></div>
