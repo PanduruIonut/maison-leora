@@ -322,7 +322,8 @@ em { font-style: italic; }
 .socials { display: flex; gap: 14px; margin-top: 38px; }
 .social { width: 42px; height: 42px; border: 1px solid var(--line-4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 17px; color: var(--text); cursor: pointer; transition: all .3s; }
 .social:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
-.contact-map { min-height: 560px; background: linear-gradient(135deg, #E8DECF, #D9C8B1); position: relative; display: flex; align-items: center; justify-content: center; }
+.contact-map { min-height: 560px; background: #E8DECF; position: relative; display: flex; align-items: stretch; justify-content: center; }
+.contact-map iframe { width: 100%; min-height: 560px; border: 0; display: block; filter: grayscale(.25) contrast(1.02); }
 .contact-map .grid { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.35) 0, rgba(255,255,255,.35) 1px, transparent 1px, transparent 46px), repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0, rgba(255,255,255,.35) 1px, transparent 1px, transparent 46px); }
 .contact-map .pin-wrap { position: relative; text-align: center; }
 .contact-map .pin { width: 18px; height: 18px; background: var(--rose); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); margin: 0 auto 14px; box-shadow: 0 8px 18px rgba(150,90,80,.4); }

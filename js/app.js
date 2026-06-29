@@ -15,14 +15,14 @@
   ];
 
   const PRODUCTS = [
-    { id: 1, brand: 'AURELLE', name: 'Ulei Reparator pentru Păr', cat: 'oils', price: 68, rating: 4.9, img: 'images/product-oil.jpeg', desc: 'Un amestec ușor de uleiuri de camelie și argan care netezește, protejează și adaugă o strălucire luminoasă, ca sticla.' },
-    { id: 2, brand: 'MÉLISSE', name: 'Mască Reparatoare de Mătase', cat: 'treatments', price: 54, rating: 4.8, img: 'images/product-mask.jpeg', desc: 'O mască intensivă de cinci minute care reconstruiește legăturile și lasă firele mătăsoase, puternice și profund hrănite.' },
-    { id: 3, brand: 'MĂDĂLINA', name: 'Ser cu Luciu Champagne', cat: 'styling', price: 72, rating: 5.0, img: 'images/product-serum.jpeg', desc: 'Serul nostru de finisare emblematic, pentru o strălucire fină în nuanțe de șampanie și un aspect fără frizz.' },
-    { id: 4, brand: 'VERANO', name: 'Spray de Volum', cat: 'styling', price: 42, rating: 4.7, img: 'images/product-mist.jpeg', desc: 'Un spray ușor care ridică de la rădăcină pentru un volum plin, aerisit și de durată.' },
-    { id: 5, brand: 'AURELLE', name: 'Șampon Nutritiv', cat: 'cleanse', price: 46, rating: 4.8, img: 'images/product-shampoo.jpeg', desc: 'Un produs de curățare fără sulfați care purifică delicat, păstrând culoarea și hidratarea.' },
-    { id: 6, brand: 'MÉLISSE', name: 'Spray cu Protecție Termică', cat: 'styling', price: 38, rating: 4.6, img: 'images/product-heat.jpeg', desc: 'Protecție termică până la 230°C, cu un finisaj mătăsos, non-gras.' },
-    { id: 7, brand: 'MĂDĂLINA', name: 'Elixir de Noapte pentru Scalp', cat: 'treatments', price: 88, rating: 4.9, img: 'images/product-elixir.jpeg', desc: 'Un ser de scalp pentru folosire înainte de somn, care echilibrează, calmează și susține creșterea sănătoasă.' },
-    { id: 8, brand: 'VERANO', name: 'Spray Texturizant cu Sare de Mare', cat: 'styling', price: 40, rating: 4.7, img: 'images/product-salt.jpeg', desc: 'Textură naturală, ușor răvășită, cu un finisaj mat, ca la plajă.' }
+    { id: 1, brand: 'NASHI ARGAN', name: 'Ulei Nashi Argan', cat: 'oils', price: 160, rating: 4.9, img: 'images/product-oil.jpeg', desc: 'Ulei de argan presat la rece care netezește, hrănește și adaugă strălucire, fără să încarce părul.' },
+    { id: 2, brand: 'NASHI ARGAN', name: 'Mască Nashi Argan Kurl', cat: 'treatments', price: 130, rating: 4.8, img: 'images/product-mask.jpeg', desc: 'Mască de hidratare intensă pentru părul ondulat și creț — definește bucla și reduce frizz-ul.' },
+    { id: 3, brand: 'NASHI ARGAN', name: 'Elixir de Hidratare', cat: 'treatments', price: 150, rating: 5.0, img: 'images/product-serum.jpeg', desc: 'Serul de finisare Nashi Argan pentru hidratare, suplețe și un păr vizibil mai mătăsos.' },
+    { id: 4, brand: 'NORIU', name: 'NORIU Hidratare Leave-in', cat: 'styling', price: 95, rating: 4.7, img: 'images/product-mist.jpeg', desc: 'Spray leave-in pe bază de apă, cu textură ușoară, pentru hidratare și protecția culorii.' },
+    { id: 5, brand: 'IKONIK', name: 'Șampon Scalp Ikonik', cat: 'cleanse', price: 90, rating: 4.8, img: 'images/product-shampoo.jpeg', desc: 'Șampon profesional pentru scalp, curăță delicat și echilibrează, fără SLES sau parabeni.' },
+    { id: 6, brand: 'NASHI ARGAN', name: 'Spray Protecție Termică', cat: 'styling', price: 110, rating: 4.6, img: 'images/product-heat.jpeg', desc: 'Protejează părul la coafarea cu căldură și lasă un finisaj mătăsos, non-gras.' },
+    { id: 7, brand: 'IKONIK', name: 'Loțiune Anticădere Ikonik', cat: 'treatments', price: 140, rating: 4.9, img: 'images/product-elixir.jpeg', desc: 'Loțiune de scalp care fortifică rădăcina și susține reducerea căderii părului.' },
+    { id: 8, brand: 'NORIU', name: 'NORIU Restructurare', cat: 'treatments', price: 120, rating: 4.7, img: 'images/product-salt.jpeg', desc: 'Tratament restructurant din exterior spre interior, pentru rezistență și aspect sănătos al firului.' }
   ];
 
   const GALLERY = [
@@ -65,7 +65,7 @@
 
   /* ---------------- Helpers ---------------- */
   const $ = (sel, root) => (root || document).querySelector(sel);
-  const money = (n) => '$' + n;
+  const money = (n) => n + ' lei';
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const prodById = (id) => PRODUCTS.find((p) => p.id === id);
   const wished = (id) => state.wishlist.includes(id);
