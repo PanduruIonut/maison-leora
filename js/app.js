@@ -59,7 +59,7 @@
   const MERO_URL = 'https://mero.ro/p/madalina-panduru-hairstylist';
   // Web3Forms — comenzile din magazin sunt trimise pe email prin acest serviciu gratuit.
   // Cheia se obține gratuit pe https://web3forms.com (introduci emailul → primești cheia).
-  const WEB3FORMS_KEY = 'PUNE_AICI_CHEIA_WEB3FORMS';
+  const WEB3FORMS_KEY = 'b126c2cf-8a02-42c3-b76d-5964e82620cc';
 
   /* ---------------- Stare ---------------- */
   const state = {
