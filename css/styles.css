@@ -444,6 +444,7 @@ em { font-style: italic; }
 a.bservice { text-decoration: none; color: inherit; }
 .bservice:hover { border-color: var(--gold); background: #FBF7EF; transform: translateX(3px); }
 .bservice-arrow { font-size: 16px; color: var(--gold-deep); }
+.checkout-error { margin-top: 18px; color: #B4543F; font-size: 13px; }
 
 /* ---------- Confirmation ---------- */
 .confirm { text-align: center; padding: 70px 20px; animation: floatUp .6s ease both; }

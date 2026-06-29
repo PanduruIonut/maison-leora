@@ -60,7 +60,13 @@
     mobileNavOpen: false,
     shopCat: 'all',
     sort: 'featured',
-    search: ''
+    search: '',
+    coName: '',
+    coEmail: '',
+    coPhone: '',
+    coDone: false,
+    coError: false,
+    coOrder: null
   };
 
   /* ---------------- Helpers ---------------- */
@@ -71,6 +77,7 @@
   const wished = (id) => state.wishlist.includes(id);
   const cartCount = () => state.cart.reduce((a, c) => a + c.qty, 0);
   const starStr = (rating) => '★'.repeat(Math.round(rating));
+  const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((s || '').trim());
 
   /* ---------------- Acțiuni coș ---------------- */
   function addToCart(id) {
@@ -331,21 +338,88 @@
       </div>`;
   }
 
+  /* ---------------- Finalizare comandă (produse) ---------------- */
+  function renderCheckout() {
+    const body = $('#checkoutBody');
+    if (state.coDone) {
+      const o = state.coOrder || { items: [], total: 0 };
+      const rows = o.items.map((it) =>
+        `<div class="confirm-row"><span class="k">${esc(it.name)} × ${it.qty}</span><span class="v">${money(it.price * it.qty)}</span></div>`).join('');
+      body.innerHTML = `
+        <div class="confirm">
+          <div class="confirm-ring">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M14 25l7 7 14-15" stroke="#D6B980" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60"/></svg>
+          </div>
+          <h1>Comanda a fost<br>înregistrată</h1>
+          <p>Mulțumim! Vei primi confirmarea și detaliile comenzii la <strong>${esc(state.coEmail)}</strong>.</p>
+          <div class="confirm-card">
+            ${rows}
+            <div class="confirm-row"><span class="k">TOTAL</span><span class="v">${money(o.total)}</span></div>
+          </div>
+          <button class="btn btn-dark" style="margin-top:40px" data-nav="home">ÎNAPOI ACASĂ</button>
+        </div>`;
+      return;
+    }
+    if (state.cart.length === 0) {
+      body.innerHTML = `
+        <div class="confirm">
+          <h1>Coșul tău este gol</h1>
+          <p>Adaugă produse din magazin pentru a finaliza o comandă.</p>
+          <button class="btn btn-dark" style="margin-top:30px" data-nav="shop">VEZI MAGAZINUL</button>
+        </div>`;
+      return;
+    }
+    const items = state.cart.map((c) => {
+      const p = prodById(c.id);
+      return `<div class="summary-row"><span class="k">${esc(p.name)} × ${c.qty}</span><span class="v">${money(p.price * c.qty)}</span></div>`;
+    }).join('');
+    const total = state.cart.reduce((a, c) => a + prodById(c.id).price * c.qty, 0);
+    const err = state.coError ? '<p class="checkout-error">Te rugăm să introduci o adresă de email validă.</p>' : '';
+    body.innerHTML = `
+      <div class="booking-head">
+        <p class="eyebrow">FINALIZARE COMANDĂ</p>
+        <h1>Detaliile tale</h1>
+      </div>
+      <div class="booking-grid">
+        <div class="booking-panel">
+          <h2>Date de contact</h2>
+          <p class="sub">Îți trimitem confirmarea și detaliile comenzii pe email.</p>
+          <div class="field">
+            <label><span class="field-label">NUME COMPLET</span><input data-cofield="coName" value="${esc(state.coName)}" placeholder="Numele tău"></label>
+            <label><span class="field-label">ADRESĂ DE EMAIL *</span><input data-cofield="coEmail" type="email" value="${esc(state.coEmail)}" placeholder="tu@email.com"></label>
+            <label><span class="field-label">TELEFON (OPȚIONAL)</span><input data-cofield="coPhone" value="${esc(state.coPhone)}" placeholder="07..."></label>
+          </div>
+          ${err}
+          <div class="booking-nav">
+            <button class="back-btn" data-nav="shop">← ÎNAPOI LA MAGAZIN</button>
+            <button class="next-btn" data-checkout-submit>TRIMITE COMANDA</button>
+          </div>
+        </div>
+        <div class="summary">
+          <p class="summary-title">COMANDA TA</p>
+          ${items}
+          <div class="summary-total"><span class="k">Total</span><span class="v">${money(total)}</span></div>
+          <p class="summary-note">Te contactăm pe email pentru confirmarea comenzii, detaliile de plată și livrare/ridicare.</p>
+        </div>
+      </div>`;
+  }
+
   /* ---------------- Navigare ---------------- */
   function setPage(page) {
     state.page = page;
     state.mobileNavOpen = false;
     state.cartOpen = false;
-    ['home', 'shop', 'booking'].forEach((p) => {
+    ['home', 'shop', 'booking', 'checkout'].forEach((p) => {
       $('#screen-' + p).hidden = p !== page;
     });
     if (page === 'shop') renderShop();
     if (page === 'booking') renderBooking();
+    if (page === 'checkout') renderCheckout();
     renderMobileNav();
     renderCart();
     updateNavChrome();
     document.querySelectorAll('[data-link="shop"]').forEach((b) => b.classList.toggle('active', page === 'shop'));
-    $('#stickyBook').style.display = page === 'booking' ? 'none' : '';
+    $('#stickyBook').style.display = (page === 'booking' || page === 'checkout') ? 'none' : '';
     window.scrollTo({ top: 0, behavior: 'auto' });
     updateNavChrome();
   }
@@ -401,7 +475,7 @@
 
   /* ---------------- Delegare evenimente ---------------- */
   function onClick(e) {
-    const t = e.target.closest('[data-nav],[data-section],[data-reserve],[data-add],[data-wish],[data-quickview],[data-lightbox],[data-testi],[data-cat],[data-shop-from-cart],[data-checkout],[data-close-cart],[data-inc],[data-dec],[data-remove],[data-close-qv],[data-qv-add],[data-qv-wish],[data-qv-stop],[data-close-lb],[data-lb-prev],[data-lb-next],[data-close-mobile]');
+    const t = e.target.closest('[data-nav],[data-section],[data-reserve],[data-add],[data-wish],[data-quickview],[data-lightbox],[data-testi],[data-cat],[data-shop-from-cart],[data-checkout],[data-checkout-submit],[data-close-cart],[data-inc],[data-dec],[data-remove],[data-close-qv],[data-qv-add],[data-qv-wish],[data-qv-stop],[data-close-lb],[data-lb-prev],[data-lb-next],[data-close-mobile]');
     if (!t) return;
 
     if (t.hasAttribute('data-nav')) return setPage(t.getAttribute('data-nav'));
@@ -416,7 +490,19 @@
     if (t.hasAttribute('data-cat')) { state.shopCat = t.getAttribute('data-cat'); return renderShop(); }
 
     if (t.hasAttribute('data-shop-from-cart')) { state.cartOpen = false; renderCart(); return setPage('shop'); }
-    if (t.hasAttribute('data-checkout')) { state.cartOpen = false; renderCart(); setPage('booking'); return; }
+    if (t.hasAttribute('data-checkout')) { state.cartOpen = false; state.coDone = false; state.coError = false; renderCart(); setPage('checkout'); return; }
+    if (t.hasAttribute('data-checkout-submit')) {
+      if (!isEmail(state.coEmail)) { state.coError = true; renderCheckout(); return; }
+      const order = state.cart.map((c) => { const p = prodById(c.id); return { name: p.name, qty: c.qty, price: p.price }; });
+      state.coOrder = { items: order, total: state.cart.reduce((a, c) => a + prodById(c.id).price * c.qty, 0) };
+      state.coDone = true;
+      state.coError = false;
+      state.cart = [];
+      renderBag();
+      renderCheckout();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     if (t.hasAttribute('data-close-cart')) { state.cartOpen = false; return renderCart(); }
     if (t.hasAttribute('data-inc')) return changeQty(+t.getAttribute('data-inc'), 1);
     if (t.hasAttribute('data-dec')) return changeQty(+t.getAttribute('data-dec'), -1);
@@ -435,7 +521,10 @@
   }
 
   function onInput(e) {
-    if (e.target.id === 'shopSearch') { state.search = e.target.value; renderShop(); }
+    const t = e.target;
+    if (t.id === 'shopSearch') { state.search = t.value; renderShop(); return; }
+    // bind checkout fields without re-render (keeps input focus)
+    if (t.getAttribute && t.getAttribute('data-cofield')) { state[t.getAttribute('data-cofield')] = t.value; }
   }
   function onChange(e) {
     if (e.target.id === 'shopSort') { state.sort = e.target.value; renderShop(); }
