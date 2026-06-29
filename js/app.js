@@ -57,6 +57,9 @@
   const MARQUEE = ['Tuns & Coafat', 'Vopsit', 'Tratamente Nashi Argan', 'Coafat Mireasă', 'Scalp Detox'];
   const CATEGORIES = [['all', 'TOATE'], ['cleanse', 'CURĂȚARE'], ['treatments', 'TRATAMENTE'], ['styling', 'STYLING'], ['oils', 'ULEIURI']];
   const MERO_URL = 'https://mero.ro/p/madalina-panduru-hairstylist';
+  // Web3Forms — comenzile din magazin sunt trimise pe email prin acest serviciu gratuit.
+  // Cheia se obține gratuit pe https://web3forms.com (introduci emailul → primești cheia).
+  const WEB3FORMS_KEY = 'PUNE_AICI_CHEIA_WEB3FORMS';
 
   /* ---------------- Stare ---------------- */
   const state = {
@@ -76,6 +79,7 @@
     coPhone: '',
     coDone: false,
     coError: false,
+    coSending: false,
     coOrder: null
   };
 
@@ -349,6 +353,49 @@
   }
 
   /* ---------------- Finalizare comandă (produse) ---------------- */
+  async function submitCheckout() {
+    if (state.coSending) return;
+    if (!isEmail(state.coEmail)) { state.coError = 'email'; renderCheckout(); return; }
+
+    const items = state.cart.map((c) => { const p = prodById(c.id); return { name: p.name, qty: c.qty, price: p.price }; });
+    const total = state.cart.reduce((a, c) => a + prodById(c.id).price * c.qty, 0);
+    const keyReady = WEB3FORMS_KEY && WEB3FORMS_KEY !== 'PUNE_AICI_CHEIA_WEB3FORMS';
+
+    if (keyReady) {
+      state.coSending = true; state.coError = false; renderCheckout();
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: 'Comandă nouă — Mădălina Panduru Hairstylist',
+            from_name: 'Site Mădălina Panduru',
+            replyto: state.coEmail,
+            name: state.coName || '(nespecificat)',
+            email: state.coEmail,
+            telefon: state.coPhone || '(nespecificat)',
+            comanda: items.map((it) => `• ${it.name} × ${it.qty} — ${money(it.price * it.qty)}`).join('\n'),
+            total: money(total)
+          })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.message || 'fail');
+      } catch (err) {
+        state.coSending = false; state.coError = 'send'; renderCheckout(); return;
+      }
+      state.coSending = false;
+    }
+
+    state.coOrder = { items, total };
+    state.coDone = true;
+    state.coError = false;
+    state.cart = [];
+    renderBag();
+    renderCheckout();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function renderCheckout() {
     const body = $('#checkoutBody');
     if (state.coDone) {
@@ -361,7 +408,7 @@
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M14 25l7 7 14-15" stroke="#D6B980" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60"/></svg>
           </div>
           <h1>Comanda a fost<br>înregistrată</h1>
-          <p>Mulțumim! Vei primi confirmarea și detaliile comenzii la <strong>${esc(state.coEmail)}</strong>.</p>
+          <p>Mulțumim! Am înregistrat comanda ta. Vei fi contactat(ă) în curând la <strong>${esc(state.coEmail)}</strong> cu confirmarea și detaliile comenzii.</p>
           <div class="confirm-card">
             ${rows}
             <div class="confirm-row"><span class="k">TOTAL</span><span class="v">${money(o.total)}</span></div>
@@ -384,7 +431,10 @@
       return `<div class="summary-row"><span class="k">${esc(p.name)} × ${c.qty}</span><span class="v">${money(p.price * c.qty)}</span></div>`;
     }).join('');
     const total = state.cart.reduce((a, c) => a + prodById(c.id).price * c.qty, 0);
-    const err = state.coError ? '<p class="checkout-error">Te rugăm să introduci o adresă de email validă.</p>' : '';
+    const errMsg = state.coError === 'send'
+      ? 'A apărut o eroare la trimitere. Te rugăm să încerci din nou.'
+      : (state.coError === 'email' ? 'Te rugăm să introduci o adresă de email validă.' : '');
+    const err = errMsg ? `<p class="checkout-error">${errMsg}</p>` : '';
     body.innerHTML = `
       <div class="booking-head">
         <p class="eyebrow">FINALIZARE COMANDĂ</p>
@@ -402,7 +452,7 @@
           ${err}
           <div class="booking-nav">
             <button class="back-btn" data-nav="shop">← ÎNAPOI LA MAGAZIN</button>
-            <button class="next-btn" data-checkout-submit>TRIMITE COMANDA</button>
+            <button class="next-btn" data-checkout-submit ${state.coSending ? 'disabled' : ''}>${state.coSending ? 'SE TRIMITE…' : 'TRIMITE COMANDA'}</button>
           </div>
         </div>
         <div class="summary">
@@ -501,18 +551,7 @@
 
     if (t.hasAttribute('data-shop-from-cart')) { state.cartOpen = false; renderCart(); return setPage('shop'); }
     if (t.hasAttribute('data-checkout')) { state.cartOpen = false; state.coDone = false; state.coError = false; renderCart(); setPage('checkout'); return; }
-    if (t.hasAttribute('data-checkout-submit')) {
-      if (!isEmail(state.coEmail)) { state.coError = true; renderCheckout(); return; }
-      const order = state.cart.map((c) => { const p = prodById(c.id); return { name: p.name, qty: c.qty, price: p.price }; });
-      state.coOrder = { items: order, total: state.cart.reduce((a, c) => a + prodById(c.id).price * c.qty, 0) };
-      state.coDone = true;
-      state.coError = false;
-      state.cart = [];
-      renderBag();
-      renderCheckout();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
+    if (t.hasAttribute('data-checkout-submit')) { submitCheckout(); return; }
     if (t.hasAttribute('data-close-cart')) { state.cartOpen = false; return renderCart(); }
     if (t.hasAttribute('data-inc')) return changeQty(+t.getAttribute('data-inc'), 1);
     if (t.hasAttribute('data-dec')) return changeQty(+t.getAttribute('data-dec'), -1);
