@@ -313,7 +313,7 @@
       <div class="mobile-drawer">
         <button class="mobile-close" data-close-mobile>✕</button>
         <button class="mobile-link" data-section="services">Servicii</button>
-        <button class="mobile-link" data-section="gallery">Galerie</button>
+        <button class="mobile-link" data-section="gallery">Portofoliu</button>
         <button class="mobile-link" data-nav="shop">Magazin</button>
         <button class="mobile-link" data-section="contact">Contact</button>
         <button class="mobile-book" data-nav="booking">REZERVĂ O PROGRAMARE</button>
