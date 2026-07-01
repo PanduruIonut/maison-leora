@@ -25,14 +25,20 @@
   ];
 
   const PRODUCTS = [
-    { id: 1, brand: 'NASHI ARGAN', name: 'Ulei Nashi Argan', cat: 'oils', price: 160, rating: 4.9, img: 'images/product-oil.jpeg', desc: 'Ulei de argan presat la rece care netezește, hrănește și adaugă strălucire, fără să încarce părul.' },
-    { id: 2, brand: 'NASHI ARGAN', name: 'Mască Nashi Argan Kurl', cat: 'treatments', price: 130, rating: 4.8, img: 'images/product-mask.jpeg', desc: 'Mască de hidratare intensă pentru părul ondulat și creț — definește bucla și reduce frizz-ul.' },
-    { id: 3, brand: 'NASHI ARGAN', name: 'Elixir de Hidratare', cat: 'treatments', price: 150, rating: 5.0, img: 'images/product-serum.jpeg', desc: 'Serul de finisare Nashi Argan pentru hidratare, suplețe și un păr vizibil mai mătăsos.' },
-    { id: 4, brand: 'NORIU', name: 'NORIU Hidratare Leave-in', cat: 'styling', price: 95, rating: 4.7, img: 'images/product-mist.jpeg', desc: 'Spray leave-in pe bază de apă, cu textură ușoară, pentru hidratare și protecția culorii.' },
-    { id: 5, brand: 'IKONIK', name: 'Șampon Scalp Ikonik', cat: 'cleanse', price: 90, rating: 4.8, img: 'images/product-shampoo.jpeg', desc: 'Șampon profesional pentru scalp, curăță delicat și echilibrează, fără SLES sau parabeni.' },
-    { id: 6, brand: 'NASHI ARGAN', name: 'Spray Protecție Termică', cat: 'styling', price: 110, rating: 4.6, img: 'images/product-heat.jpeg', desc: 'Protejează părul la coafarea cu căldură și lasă un finisaj mătăsos, non-gras.' },
-    { id: 7, brand: 'IKONIK', name: 'Loțiune Anticădere Ikonik', cat: 'treatments', price: 140, rating: 4.9, img: 'images/product-elixir.jpeg', desc: 'Loțiune de scalp care fortifică rădăcina și susține reducerea căderii părului.' },
-    { id: 8, brand: 'NORIU', name: 'NORIU Restructurare', cat: 'treatments', price: 120, rating: 4.7, img: 'images/product-salt.jpeg', desc: 'Tratament restructurant din exterior spre interior, pentru rezistență și aspect sănătos al firului.' }
+    { id: 1, brand: 'NASHI ARGAN', name: 'Ulei Nashi Argan — The Original', cat: 'oils', price: 230, rating: 5.0, img: 'images/prod-nashi-argan-oil.jpeg', desc: 'Uleiul iconic de argan, presat la rece. Netezește, hrănește și adaugă strălucire instant, fără să încarce părul.' },
+    { id: 2, brand: 'NASHI ARGAN', name: 'Șampon Argan', cat: 'cleanse', price: 115, rating: 4.9, img: 'images/prod-nashi-argan-shampoo.jpeg', desc: 'Șampon de îngrijire cu ulei de argan pentru toate tipurile de păr — curăță delicat și lasă părul mătăsos.' },
+    { id: 3, brand: 'NASHI ARGAN', name: 'Mască Deep Infusion', cat: 'treatments', price: 150, rating: 5.0, img: 'images/prod-nashi-argan-mask.jpeg', desc: 'Mască restructurantă de hidratare profundă. Reface firul deteriorat și redă suplețea și strălucirea.' },
+    { id: 4, brand: 'NASHI ARGAN', name: 'Șampon Essential Energy', cat: 'cleanse', price: 120, rating: 4.9, img: 'images/prod-nashi-essential-shampoo.jpeg', desc: 'Șampon energizant cu acțiune anti-cădere și anti-rupere — ideal la schimbarea sezonului.' },
+    { id: 5, brand: 'NASHI ARGAN', name: 'Instant — Mască de Styling Hidratantă', cat: 'styling', price: 140, rating: 4.8, img: 'images/prod-nashi-argan-instant.jpeg', desc: 'Spray leave-in care hidratează, descurcă și pregătește părul pentru coafare, cu un finisaj ușor.' },
+    { id: 6, brand: 'NASHI ARGAN', name: 'Love — Hair Mist', cat: 'styling', price: 95, rating: 4.9, img: 'images/prod-nashi-love-mist.jpeg', desc: 'Parfum de păr cu aromă senzuală și delicată, care lasă o urmă fină toată ziua.' },
+    { id: 7, brand: 'NASHI STYLE', name: 'Sea Salt — Spray Texturizant', cat: 'styling', price: 110, rating: 4.7, img: 'images/prod-nashi-seasalt.jpeg', desc: 'Spray cu efect de plajă — creează valuri și mișcare naturală, fără fosfați sau parabeni.' },
+    { id: 8, brand: 'IKONIK', name: 'Scalp — Șampon Detoxifiant', cat: 'cleanse', price: 150, rating: 4.9, img: 'images/prod-ikonik-detox-shampoo.jpeg', desc: 'Șampon adjuvant care curăță în profunzime scalpul și reechilibrează, testat dermatologic.' },
+    { id: 9, brand: 'IKONIK', name: 'Scalp — Șampon Anti-Mătreață', cat: 'cleanse', price: 150, rating: 4.8, img: 'images/prod-ikonik-antimatreata-shampoo.jpeg', desc: 'Șampon adjuvant anti-mătreață uscată, cu extracte de rozmarin — calmează și curăță scalpul.' },
+    { id: 10, brand: 'IKONIK', name: 'Scalp — Loțiune Anti-Cădere', cat: 'treatments', price: 140, rating: 4.9, img: 'images/prod-ikonik-anticadere-lotion.jpeg', desc: 'Loțiune adjuvantă cu picurător care fortifică rădăcina și susține reducerea căderii părului.' },
+    { id: 11, brand: 'IKONIK', name: 'Scalp — Loțiune Anti-Mătreață', cat: 'treatments', price: 120, rating: 4.8, img: 'images/prod-ikonik-antimatreata-lotion.jpeg', desc: 'Loțiune zilnică adjuvantă anti-mătreață — calmează scalpul iritat și menține echilibrul, testată dermatologic.' },
+    { id: 12, brand: 'IKONIK', name: 'Set Scalp Detox — Șampon & Loțiune', cat: 'treatments', price: 230, rating: 5.0, img: 'images/prod-ikonik-detox-set.jpeg', desc: 'Ritualul complet de detoxifiere a scalpului: șampon adjuvant 250 ml + loțiune adjuvantă 100 ml.' },
+    { id: 13, brand: 'NASHI KURL IDENTITY', name: 'Mască Multifuncțională pentru Bucle', cat: 'treatments', price: 130, rating: 4.8, img: 'images/prod-kurl-mask.jpeg', desc: 'Mască multifuncțională pentru păr ondulat și creț — hidratează, definește bucla și reduce frizz-ul.' },
+    { id: 14, brand: 'NASHI KURL IDENTITY', name: 'Set Styling Bucle — Gel & Spray', cat: 'styling', price: 180, rating: 4.7, img: 'images/prod-kurl-volume.jpeg', desc: 'Duo de styling pentru bucle: gel anti-crespo „bye bye frizz" și spray volumizant „kinky fix".' }
   ];
 
   const GALLERY = [
