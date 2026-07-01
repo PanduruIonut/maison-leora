@@ -73,7 +73,7 @@
     { text: 'Mi-a plăcut mult ritmul calm și faptul că a fost prezentă și respectuoasă. Un serviciu de calitate făcut cu discreție și pricepere. Recomand!', name: 'Diana B.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
     { text: 'Sunt foarte mulțumită de serviciile Mădălinei — este foarte atentă la nevoile clienților și foarte răbdătoare. Recomand cu încredere!', name: 'Andreea-Denisa A.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
     { text: 'O experiență plăcută, atmosfera a fost primitoare. O să revin cu siguranță!', name: 'Teodora C.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
-    { text: 'Super încântată de experiență. Mădălina este foarte finuță, lucrează atent, iar rezultatele sunt pe măsură!', name: 'Ana H.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
+    { text: 'Super încântată de experiență. Mădălina este foarte finuță, lucrează atent iar rezultatele sunt pe măsură! ❤️', name: 'Ana H.', role: 'RECENZIE VERIFICATĂ · MERO', photo: null, stars: '★★★★★' },
     { text: 'O experiență minunată, ca de obicei. Mulțumesc, Mădălina!', name: 'Diana S.', role: 'RECENZIE VERIFICATĂ · MERO', photo: 'images/review-diana.jpeg', stars: '★★★★★' }
   ];
 
