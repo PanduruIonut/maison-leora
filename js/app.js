@@ -38,7 +38,19 @@
     { id: 11, brand: 'IKONIK', name: 'Scalp — Loțiune Anti-Mătreață', cat: 'treatments', price: 120, rating: 4.8, img: 'images/prod-ikonik-antimatreata-lotion.jpeg', desc: 'Loțiune zilnică adjuvantă anti-mătreață — calmează scalpul iritat și menține echilibrul, testată dermatologic.' },
     { id: 12, brand: 'IKONIK', name: 'Set Scalp Detox — Șampon & Loțiune', cat: 'treatments', price: 230, rating: 5.0, img: 'images/prod-ikonik-detox-set.jpeg', desc: 'Ritualul complet de detoxifiere a scalpului: șampon adjuvant 250 ml + loțiune adjuvantă 100 ml.' },
     { id: 13, brand: 'NASHI KURL IDENTITY', name: 'Mască Multifuncțională pentru Bucle', cat: 'treatments', price: 130, rating: 4.8, img: 'images/prod-kurl-mask.jpeg', desc: 'Mască multifuncțională pentru păr ondulat și creț — hidratează, definește bucla și reduce frizz-ul.' },
-    { id: 14, brand: 'NASHI KURL IDENTITY', name: 'Set Styling Bucle — Gel & Spray', cat: 'styling', price: 180, rating: 4.7, img: 'images/prod-kurl-volume.jpeg', desc: 'Duo de styling pentru bucle: gel anti-crespo „bye bye frizz" și spray volumizant „kinky fix".' }
+    { id: 14, brand: 'NASHI KURL IDENTITY', name: 'Set Styling Bucle — Gel & Spray', cat: 'styling', price: 180, rating: 4.7, img: 'images/prod-kurl-volume.jpeg', desc: 'Duo de styling pentru bucle: gel anti-crespo „bye bye frizz" și spray volumizant „kinky fix".' },
+    { id: 15, brand: 'NASHI ARGAN', name: 'Balsam Essential Energy', cat: 'treatments', price: 120, rating: 4.8, img: 'images/prod-nashi-essential-conditioner.jpeg', desc: 'Balsam energizant care descurcă și fortifică firul — completează șamponul Essential Energy pentru un păr rezistent.' },
+    { id: 16, brand: 'NASHI ARGAN', name: 'Fiole Essential Energy — Anti-Cădere', cat: 'treatments', price: 160, rating: 5.0, img: 'images/prod-nashi-essential-fiole.jpeg', desc: 'Tratament intensiv în fiole cu acțiune anti-cădere și anti-rupere, ideal la schimbarea sezonului.' },
+    { id: 17, brand: 'NASHI ARMONIA', name: 'Set Purificare — Șampon & Scrub', cat: 'cleanse', price: 200, rating: 4.9, img: 'images/prod-armonia-set.jpeg', desc: 'Ritual purificant și seboreglator: șampon Armonia + scrub exfoliant pentru un scalp curat și echilibrat.' },
+    { id: 18, brand: 'NASHI ARMONIA', name: 'Scalp Detox — Ser Calmant', cat: 'treatments', price: 170, rating: 4.9, img: 'images/prod-armonia-scalp-detox.jpeg', desc: 'Ser lenitiv și detoxifiant pentru scalp — calmează, purifică și redă senzația de confort.' },
+    { id: 19, brand: 'NASHI MASS SOLUTION', name: 'Set Densificare — Șampon & Scalp Revitalizer', cat: 'cleanse', price: 210, rating: 4.8, img: 'images/prod-mass-solution.jpeg', desc: 'Șampon de densificare + tratament revitalizant de scalp, pentru un păr mai des și mai puternic de la rădăcină.' },
+    { id: 20, brand: 'NASHI BLONDY JOY', name: 'Set Purple — Șampon & Balsam', cat: 'cleanse', price: 190, rating: 4.8, img: 'images/prod-blondy-joy.jpeg', desc: 'Booster de strălucire cu pigment mov pentru părul blond și grizonat — neutralizează tonurile gălbui.' },
+    { id: 21, brand: 'IKONIK', name: 'Scalp — Spray Anti-Cădere', cat: 'treatments', price: 130, rating: 4.8, img: 'images/prod-ikonik-spray.jpeg', desc: 'Spray adjuvant anti-cădere pentru aplicare directă pe scalp, cu absorbție rapidă și fără reziduuri.' },
+    { id: 22, brand: 'NASHI STYLE', name: 'Soft Hair Spray — Fixare Naturală', cat: 'styling', price: 100, rating: 4.7, img: 'images/prod-nashi-soft-hairspray.jpeg', desc: 'Fixativ cu tenută naturală, fără reziduuri — dă textură și ținută, lăsând părul flexibil.' },
+    { id: 23, brand: 'NASHI STYLE', name: 'Hair Spray — Fixare Puternică', cat: 'styling', price: 100, rating: 4.7, img: 'images/prod-nashi-hairspray.jpeg', desc: 'Fixativ cu tenută extra-puternică, fără reziduuri — menține coafura toată ziua.' },
+    { id: 24, brand: 'NASHI STYLE', name: 'Dry Shampoo — Șampon Uscat', cat: 'cleanse', price: 95, rating: 4.6, img: 'images/prod-nashi-dry-shampoo.jpeg', desc: 'Șampon uscat care curăță și împrospătează părul între spălări, fără apă.' },
+    { id: 25, brand: 'NASHI STYLE', name: 'Curly — Cremă Booster pentru Bucle', cat: 'styling', price: 105, rating: 4.7, img: 'images/prod-nashi-curly-cream.jpeg', desc: 'Cremă modelatoare hidratantă pentru bucle definite, moi și elastice.' },
+    { id: 26, brand: 'JANEKE × NASHI', name: 'Curly Brush — Perie pentru Bucle', cat: 'accessories', price: 90, rating: 4.9, img: 'images/prod-janeke-brush.jpeg', desc: 'Perie profesională Janeke pentru descurcarea și definirea buclelor, fără a rupe firul.' }
   ];
 
   const GALLERY = [
@@ -67,7 +79,7 @@
 
   const INSTAGRAM = ['images/portrait-2.jpeg', 'images/portrait-3.jpeg', 'images/portrait-1.jpeg', 'images/portrait-4.jpeg', 'images/gallery-7.jpeg', 'images/gallery-5.jpeg'];
   const MARQUEE = ['Tuns & Coafat', 'Vopsit', 'Tratamente Nashi Argan', 'Coafat Mireasă', 'Scalp Detox'];
-  const CATEGORIES = [['all', 'TOATE'], ['cleanse', 'CURĂȚARE'], ['treatments', 'TRATAMENTE'], ['styling', 'STYLING'], ['oils', 'ULEIURI']];
+  const CATEGORIES = [['all', 'TOATE'], ['cleanse', 'CURĂȚARE'], ['treatments', 'TRATAMENTE'], ['styling', 'STYLING'], ['oils', 'ULEIURI'], ['accessories', 'ACCESORII']];
   const MERO_URL = 'https://mero.ro/p/madalina-panduru-hairstylist';
   // Web3Forms — comenzile din magazin sunt trimise pe email prin acest serviciu gratuit.
   // Cheia se obține gratuit pe https://web3forms.com (introduci emailul → primești cheia).
